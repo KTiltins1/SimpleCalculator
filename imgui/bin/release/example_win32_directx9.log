@@ -1,0 +1,15 @@
+﻿  imgui_impl_dx9.cpp
+  imgui_impl_win32.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  main.cpp
+c:\users\kristians tiltins\documents\github\imgui-desktop-app\imgui\main.cpp(76): warning C4189: 'show_demo_window': local variable is initialized but not referenced
+c:\users\kristians tiltins\documents\github\imgui-desktop-app\imgui\main.cpp(77): warning C4189: 'show_another_window': local variable is initialized but not referenced
+  menu.cpp
+  Generating code
+  All 1350 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  example_win32_directx9.vcxproj -> C:\Users\Kristians Tiltins\Documents\GitHub\imgui-desktop-app\imgui\output\release\calculator.exe

@@ -1,0 +1,11 @@
+﻿  imgui_impl_dx9.cpp
+  imgui_impl_win32.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  main.cpp
+  menu.cpp
+  Generating Code...
+  example_win32_directx9.vcxproj -> C:\Users\Kristians Tiltins\Documents\GitHub\imgui-desktop-app\imgui\output\debug\calculator.exe

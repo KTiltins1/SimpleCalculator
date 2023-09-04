@@ -1,7 +1,3 @@
-// Dear ImGui: standalone example application for DirectX 9
-// If you are new to Dear ImGui, read documentation from the docs/ folder + read the top of imgui.cpp.
-// Read online: https://github.com/ocornut/imgui/tree/master/docs
-
 #include "imgui/imgui.h"
 #include "imgui/backends/imgui_impl_dx9.h"
 #include "imgui/backends/imgui_impl_win32.h"
@@ -45,9 +41,8 @@ int main(int, char**)
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-
+	io.IniFilename = NULL;
+ 
     // Setup Dear ImGui style
     ImGui::StyleColorsDark();
 
@@ -55,7 +50,7 @@ int main(int, char**)
     ImGui_ImplWin32_Init(hwnd);
     ImGui_ImplDX9_Init(g_pd3dDevice);
 
-	// bg variables
+	// BG Vars
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
     // Main loop
@@ -80,7 +75,7 @@ int main(int, char**)
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
 		
-		// here we render the calc
+		// Here we render the calculator!
 		C::RenderCalculator();
 
         // Rendering
@@ -128,6 +123,7 @@ bool CreateDeviceD3D(HWND hWnd)
     g_d3dpp.BackBufferFormat = D3DFMT_UNKNOWN; // Need to use an explicit format with alpha if needing per-pixel alpha composition.
     g_d3dpp.EnableAutoDepthStencil = TRUE;
     g_d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
+	// inf fpss!
     //g_d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_ONE;           // Present with vsync
     g_d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;   // Present without vsync, maximum unthrottled framerate
     if (g_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING, &g_d3dpp, &g_pd3dDevice) < 0)

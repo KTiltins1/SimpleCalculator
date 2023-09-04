@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define X xorstr_
+
 #ifndef JM_XORSTR_HPP
 #define JM_XORSTR_HPP
 

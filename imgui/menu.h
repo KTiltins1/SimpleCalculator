@@ -6,9 +6,10 @@
 
 namespace C
 {
+	// render the main window
 	void RenderCalculator();
 
-	// needs a recode
+	// note: needs a recode
 	__forceinline double CalculateStringToFloat(const std::string& strExp)
 	{
 		// variables
@@ -21,7 +22,9 @@ namespace C
 		for (char ch : strExp)
 		{
 			if (std::isdigit(ch))
+				// used to convert a character representing a digit (0-9) into an integer and add it to the existing number.
 				dbNumber = dbNumber * 10 + (ch - '0');
+			// we only support 4 operators
 			else if (ch == '*' || ch == '/' || ch == '+' || ch == '-') {
 
 				if (bNextIsNegative)
@@ -67,6 +70,5 @@ namespace C
 
 		return dbResult;
 	}
-
 }
 

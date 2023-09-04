@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+.vs
+output\
+bin\
+*.log
+imgui/bin/debug/calculator.tlog/calculator.lastbuildstate
+imgui/bin/debug/calculator.tlog/calculator.lastbuildstate

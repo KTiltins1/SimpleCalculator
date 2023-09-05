@@ -37,11 +37,16 @@ void C::RenderCalculator()
 
 		// main value text box on top
 		{
-			ImGui::Text(strValue == "" ? "0" : "%s", strValue.c_str());
+			// main value text
+			char buffer[256];
+			strcpy(buffer, strValue.c_str());
 
 			// with the input text box we need to push the width to the GetContentRegionAvail and then pop it!
-			//const char* szString = strValue.c_str();
-			//ImGui::InputText("##", (char*)szString, IM_ARRAYSIZE((char*)szString), ImGuiInputTextFlags_CharsDecimal | ImGuiInputTextFlags_EscapeClearsAll);
+			ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x - 1);
+			{
+				ImGui::InputText("##", buffer, sizeof(buffer));
+			}
+			ImGui::PopItemWidth();
 		}
 
 		ImGui::Separator();

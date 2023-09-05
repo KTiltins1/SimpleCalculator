@@ -7,7 +7,7 @@ int main(int, char**)
 	GetWindowRect(GetDesktopWindow(), &desktop);
 	WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, AppClass, NULL };
 	RegisterClassEx(&wc);
-	hwnd = CreateWindowEx(WS_EX_TOPMOST | WS_EX_LAYERED, AppClass, AppName, WS_POPUP, (desktop.right / 2) - (C::vecCalculatorSize.x / 2), (desktop.bottom / 2) - (C::vecCalculatorSize.y / 2), C::vecCalculatorSize.x, C::vecCalculatorSize.y, 0, 0, wc.hInstance, 0);
+	hwnd = CreateWindowEx(WS_EX_TOPMOST | WS_EX_LAYERED, AppClass, AppName, WS_POPUP, (desktop.right / 2.f) - (C::vecCalculatorSize.x / 2.f), (desktop.bottom / 2.f) - (C::vecCalculatorSize.y / 2.f), C::vecCalculatorSize.x, C::vecCalculatorSize.y, 0, 0, wc.hInstance, 0);
 
 	SetLayeredWindowAttributes(hwnd, RGB(0, 0, 0), 0, ULW_COLORKEY);
 
@@ -34,8 +34,7 @@ int main(int, char**)
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
 	static bool open = true;
-	DWORD dwFlag = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
-	char somelogin[25] = "";
+
 	while (msg.message != WM_QUIT)
 	{
 		if (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
@@ -44,7 +43,10 @@ int main(int, char**)
 			DispatchMessage(&msg);
 			continue;
 		}
-		if (!open) ExitProcess(EXIT_SUCCESS);
+
+		if (!open) 
+			ExitProcess(EXIT_SUCCESS);
+
 		std::this_thread::sleep_for(std::chrono::milliseconds(20));
 
 		ImGui_ImplDX9_NewFrame();

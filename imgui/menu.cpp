@@ -1,4 +1,5 @@
 #include "menu.h"
+#include <cctype> // std::isspace
 
 // external libraries used:
 // imgui  | https://github.com/ocornut/imgui
@@ -9,7 +10,7 @@
 // todo:
 // add parentheses
 // fix:
-// 
+// only do decimal numbers when its not a whole number
 
 enum EButtonSize : int
 {
@@ -49,14 +50,28 @@ void C::RenderCalculator()
 		{
 			// backspace
 			if (ImGui::Button("<-", vecButtonSize[EButtonDouble]) || ImGui::IsKeyPressed(ImGuiKey_Backspace))
-				// remove 1 char from string
-				strValue = strValue.substr(0, strValue.size() - 1);
+			{
+				if (!strValue.empty())
+				{
+					// Find the position of the last non-space character in the string
+					size_t lastNonSpacePos = strValue.size() - 1;
+					while (lastNonSpacePos >= 0 && std::isspace(strValue[lastNonSpacePos]))
+						lastNonSpacePos--;
+
+					if (lastNonSpacePos >= 0) 
+						// Remove 1 character from the string starting at the position of the last non-space character
+						strValue = strValue.substr(0, lastNonSpacePos);
+				}			
+			}
 
 			// clear
 			if (ImGui::SameLine(); ImGui::Button("C", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_C) || ImGui::IsKeyPressed(ImGuiKey_Escape))
 				strValue.clear(); ImGui::SameLine();
-
-			// result
+			
+			// calculate | make it a cool color
+			ImGui::PushStyleColor(ImGuiCol_::ImGuiCol_Button, (ImVec4)ImColor(0.76f, 0.59f, 0.88f, 0.40f));
+			ImGui::PushStyleColor(ImGuiCol_::ImGuiCol_ButtonHovered, (ImVec4)ImColor(0.76f, 0.59f, 0.88f, 1.f));
+			ImGui::PushStyleColor(ImGuiCol_::ImGuiCol_ButtonActive, (ImVec4)ImColor(0.56f, 0.53f, 0.88f, 1.f));
 			if (ImGui::SameLine(); ImGui::Button("=", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_KeypadEnter) || ImGui::IsKeyPressed(ImGuiKey_Enter) || ImGui::IsKeyPressed(ImGuiKey_KeypadEqual) || ImGui::IsKeyPressed(ImGuiKey_Equal))
 			{
 				// Convert the string to a double
@@ -65,6 +80,7 @@ void C::RenderCalculator()
 				// Round the result
 				strValue = RoundString(strValue, 2);
 			}
+			ImGui::PopStyleColor(3);
 
 			//if (ImGui::SameLine(); ImGui::Button("(", vecButtonSize[EButtonNormal]))
 			//	strValue += "("; ImGui::SameLine();

@@ -19,6 +19,9 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 // Main code
 int main(int, char**)
 {
+
+	ImGui_ImplWin32_EnableDpiAwareness();
+
     // Create application window
     //ImGui_ImplWin32_EnableDpiAwareness();
     WNDCLASSEXW wc = { sizeof(wc), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, L"ImGui Example", NULL };
@@ -43,6 +46,10 @@ int main(int, char**)
     ImGuiIO& io = ImGui::GetIO(); (void)io;
 	io.IniFilename = NULL;
  
+	ImGuiStyle &style = ImGui::GetStyle();
+
+	//style.ScaleAllSizes(4);
+
     // Setup Dear ImGui style
     ImGui::StyleColorsDark();
 

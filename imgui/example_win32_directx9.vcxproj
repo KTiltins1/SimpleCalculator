@@ -157,6 +157,12 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
+    <ClCompile Include="muParser\muParser\muParser.cpp" />
+    <ClCompile Include="muParser\muParser\muParserBase.cpp" />
+    <ClCompile Include="muParser\muParser\muParserBytecode.cpp" />
+    <ClCompile Include="muParser\muParser\muParserCallback.cpp" />
+    <ClCompile Include="muParser\muParser\muParserError.cpp" />
+    <ClCompile Include="muParser\muParser\muParserTokenReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hash\xorstr.h" />
@@ -166,6 +172,17 @@
     <ClInclude Include="imgui\imgui.h" />
     <ClInclude Include="imgui\imgui_internal.h" />
     <ClInclude Include="menu.h" />
+    <ClInclude Include="muParser\muParser\muParser.h" />
+    <ClInclude Include="muParser\muParser\muParserBase.h" />
+    <ClInclude Include="muParser\muParser\muParserBytecode.h" />
+    <ClInclude Include="muParser\muParser\muParserCallback.h" />
+    <ClInclude Include="muParser\muParser\muParserDef.h" />
+    <ClInclude Include="muParser\muParser\muParserError.h" />
+    <ClInclude Include="muParser\muParser\muParserFixes.h" />
+    <ClInclude Include="muParser\muParser\muParserStack.h" />
+    <ClInclude Include="muParser\muParser\muParserTemplateMagic.h" />
+    <ClInclude Include="muParser\muParser\muParserToken.h" />
+    <ClInclude Include="muParser\muParser\muParserTokenReader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

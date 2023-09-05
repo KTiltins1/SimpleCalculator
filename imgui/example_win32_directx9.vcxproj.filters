@@ -40,6 +40,24 @@
     <ClCompile Include="menu.cpp">
       <Filter>gui</Filter>
     </ClCompile>
+    <ClCompile Include="muParser\muParser\muParser.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="muParser\muParser\muParserBase.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="muParser\muParser\muParserBytecode.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="muParser\muParser\muParserCallback.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="muParser\muParser\muParserError.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="muParser\muParser\muParserTokenReader.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -61,5 +79,16 @@
     <ClInclude Include="menu.h">
       <Filter>gui</Filter>
     </ClInclude>
+    <ClInclude Include="muParser\muParser\muParser.h" />
+    <ClInclude Include="muParser\muParser\muParserBase.h" />
+    <ClInclude Include="muParser\muParser\muParserBytecode.h" />
+    <ClInclude Include="muParser\muParser\muParserCallback.h" />
+    <ClInclude Include="muParser\muParser\muParserDef.h" />
+    <ClInclude Include="muParser\muParser\muParserError.h" />
+    <ClInclude Include="muParser\muParser\muParserFixes.h" />
+    <ClInclude Include="muParser\muParser\muParserStack.h" />
+    <ClInclude Include="muParser\muParser\muParserTemplateMagic.h" />
+    <ClInclude Include="muParser\muParser\muParserToken.h" />
+    <ClInclude Include="muParser\muParser\muParserTokenReader.h" />
   </ItemGroup>
 </Project>

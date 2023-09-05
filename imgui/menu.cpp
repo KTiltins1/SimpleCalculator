@@ -7,16 +7,33 @@
 // project last update: 05.09.2023
 
 // todo:
-// fix hardcoded button sizes
-// remove the background
+// add parentheses
+// fix:
+// 
+
+enum EButtonSize : int
+{
+	EButtonNormal = 0,
+	EButtonDouble,
+	EButtonMax
+};
 
 void C::RenderCalculator() 
 {
 	// math equation string :)
 	static std::string strValue;
 
-	ImGui::Begin("Simple Calculator", nullptr, ImGuiWindowFlags_::ImGuiWindowFlags_AlwaysAutoResize);
+	// hardcoded values woohoo
+	ImVec2 vecButtonSize[EButtonMax];
+	vecButtonSize[EButtonNormal] = ImVec2(30, 30);
+	vecButtonSize[EButtonDouble] = ImVec2(68, 30);
+
+	ImGui::Begin("Simple Calculator", nullptr, ImGuiWindowFlags_::ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_::ImGuiWindowFlags_NoMove);
 	{
+	
+		// save the size of the calculator)
+		vecCalculatorSize = ImGui::GetWindowSize();
+
 		// main value text box on top
 		{
 			ImGui::Text(strValue == "" ? "0" : "%s", strValue.c_str());
@@ -31,16 +48,16 @@ void C::RenderCalculator()
 		// 1ST ROW
 		{
 			// backspace
-			if (ImGui::Button("<-", ImVec2(68, 30)) || ImGui::IsKeyPressed(ImGuiKey_Backspace))
+			if (ImGui::Button("<-", vecButtonSize[EButtonDouble]) || ImGui::IsKeyPressed(ImGuiKey_Backspace))
 				// remove 1 char from string
 				strValue = strValue.substr(0, strValue.size() - 1);
 
 			// clear
-			if (ImGui::SameLine(); ImGui::Button("C", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_C) || ImGui::IsKeyPressed(ImGuiKey_Escape))
+			if (ImGui::SameLine(); ImGui::Button("C", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_C) || ImGui::IsKeyPressed(ImGuiKey_Escape))
 				strValue.clear(); ImGui::SameLine();
 
 			// result
-			if (ImGui::SameLine(); ImGui::Button("=", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_KeypadEnter) || ImGui::IsKeyPressed(ImGuiKey_Enter) || ImGui::IsKeyPressed(ImGuiKey_KeypadEqual) || ImGui::IsKeyPressed(ImGuiKey_Equal))
+			if (ImGui::SameLine(); ImGui::Button("=", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_KeypadEnter) || ImGui::IsKeyPressed(ImGuiKey_Enter) || ImGui::IsKeyPressed(ImGuiKey_KeypadEqual) || ImGui::IsKeyPressed(ImGuiKey_Equal))
 			{
 				// Convert the string to a double
 				strValue = CalculateString(strValue);
@@ -49,74 +66,72 @@ void C::RenderCalculator()
 				strValue = RoundString(strValue, 2);
 			}
 
-			// todo: add parentheses
-			//if (ImGui::SameLine(); ImGui::Button("(", ImVec2(30, 30)))
+			//if (ImGui::SameLine(); ImGui::Button("(", vecButtonSize[EButtonNormal]))
 			//	strValue += "("; ImGui::SameLine();
-
-			//if (ImGui::SameLine(); ImGui::Button(")", ImVec2(30, 30)))
+			
+			//if (ImGui::SameLine(); ImGui::Button(")", vecButtonSize[EButtonNormal]))
 			//	strValue += ")"; ImGui::SameLine();
-
 		}
 
 		// 2ND ROW
 		{
-			if (ImGui::Button("7", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_7))
+			if (ImGui::Button("7", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_7) || ImGui::IsKeyPressed(ImGuiKey_Keypad7))
 				strValue += "7"; ImGui::SameLine();
 
-			if (ImGui::Button("8", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_8))
+			if (ImGui::Button("8", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_8) || ImGui::IsKeyPressed(ImGuiKey_Keypad8))
 				strValue += "8"; ImGui::SameLine();
 
-			if (ImGui::Button("9", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_9))
+			if (ImGui::Button("9", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_9) || ImGui::IsKeyPressed(ImGuiKey_Keypad9))
 				strValue += "9"; ImGui::SameLine();
 
 			// multiplication
-			if (ImGui::Button("x", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_KeypadMultiply))
+			if (ImGui::Button("x", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_KeypadMultiply))
 				strValue += " * ";
 		}
 
 		// 3RD ROW
 		{
-			if (ImGui::Button("4", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_4))
+			if (ImGui::Button("4", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_4) || ImGui::IsKeyPressed(ImGuiKey_Keypad4))
 				strValue += "4"; ImGui::SameLine();
 
-			if (ImGui::Button("5", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_5))
+			if (ImGui::Button("5", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_5) || ImGui::IsKeyPressed(ImGuiKey_Keypad5))
 				strValue += "5"; ImGui::SameLine();
 
-			if (ImGui::Button("6", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_6))
+			if (ImGui::Button("6", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_6) || ImGui::IsKeyPressed(ImGuiKey_Keypad6))
 				strValue += "6"; ImGui::SameLine();
 
 			// division 
-			if (ImGui::Button("/", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_KeypadDivide))
+			if (ImGui::Button("/", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_KeypadDivide))
 				strValue += " / ";
 		}
 
 		// 4TH ROW
 		{
-			if (ImGui::Button("1", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_1))
+			if (ImGui::Button("1", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_1) || ImGui::IsKeyPressed(ImGuiKey_Keypad1))
 				strValue += "1"; ImGui::SameLine();
 
-			if (ImGui::Button("2", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_2))
+			if (ImGui::Button("2", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_2) || ImGui::IsKeyPressed(ImGuiKey_Keypad2))
 				strValue += "2"; ImGui::SameLine();
 
-			if (ImGui::Button("3", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_3))
+			if (ImGui::Button("3", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_3) || ImGui::IsKeyPressed(ImGuiKey_Keypad3))
 				strValue += "3"; ImGui::SameLine();
 
 			// addition
-			if (ImGui::Button("+", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_KeypadAdd))
+			if (ImGui::Button("+", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_KeypadAdd))
 				strValue += " + ";
 		}
 
 		// 5TH ROW
 		{
-			if (ImGui::Button("0", ImVec2(68, 30)) || ImGui::IsKeyPressed(ImGuiKey_0))
+			if (ImGui::Button("0", vecButtonSize[EButtonDouble]) || ImGui::IsKeyPressed(ImGuiKey_0) || ImGui::IsKeyPressed(ImGuiKey_Keypad0))
 				strValue += "0"; ImGui::SameLine();
 
 			// dot
-			if (ImGui::Button(".", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_Period))
+			if (ImGui::Button(".", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_Period))
 				strValue += "."; ImGui::SameLine();
 
 			// subtraction
-			if (ImGui::Button("-", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_KeypadSubtract))
+			if (ImGui::Button("-", vecButtonSize[EButtonNormal]) || ImGui::IsKeyPressed(ImGuiKey_KeypadSubtract) || ImGui::IsKeyPressed(ImGuiKey_Minus))
 				strValue += " - ";
 		}
 	}

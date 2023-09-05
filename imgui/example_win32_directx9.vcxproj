@@ -171,6 +171,7 @@
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />
     <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="muParser\muParser\muParser.h" />
     <ClInclude Include="muParser\muParser\muParserBase.h" />

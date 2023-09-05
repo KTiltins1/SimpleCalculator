@@ -90,5 +90,6 @@
     <ClInclude Include="muParser\muParser\muParserTemplateMagic.h" />
     <ClInclude Include="muParser\muParser\muParserToken.h" />
     <ClInclude Include="muParser\muParser\muParserTokenReader.h" />
+    <ClInclude Include="main.h" />
   </ItemGroup>
 </Project>

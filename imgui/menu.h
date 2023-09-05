@@ -6,6 +6,9 @@
 
 namespace C
 {
+
+	inline ImVec2 vecCalculatorSize = ImVec2(200, 300);
+
 	// render the main window
 	void RenderCalculator();
 

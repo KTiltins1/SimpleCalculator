@@ -48,6 +48,14 @@ void C::RenderCalculator()
 				// Round the result
 				strValue = RoundString(strValue, 2);
 			}
+
+			// todo: add parentheses
+			//if (ImGui::SameLine(); ImGui::Button("(", ImVec2(30, 30)))
+			//	strValue += "("; ImGui::SameLine();
+
+			//if (ImGui::SameLine(); ImGui::Button(")", ImVec2(30, 30)))
+			//	strValue += ")"; ImGui::SameLine();
+
 		}
 
 		// 2ND ROW
@@ -63,7 +71,7 @@ void C::RenderCalculator()
 
 			// multiplication
 			if (ImGui::Button("x", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_KeypadMultiply))
-				strValue += "*";
+				strValue += " * ";
 		}
 
 		// 3RD ROW
@@ -79,7 +87,7 @@ void C::RenderCalculator()
 
 			// division 
 			if (ImGui::Button("/", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_KeypadDivide))
-				strValue += "/";
+				strValue += " / ";
 		}
 
 		// 4TH ROW
@@ -95,7 +103,7 @@ void C::RenderCalculator()
 
 			// addition
 			if (ImGui::Button("+", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_KeypadAdd))
-				strValue += "+";
+				strValue += " + ";
 		}
 
 		// 5TH ROW
@@ -109,7 +117,7 @@ void C::RenderCalculator()
 
 			// subtraction
 			if (ImGui::Button("-", ImVec2(30, 30)) || ImGui::IsKeyPressed(ImGuiKey_KeypadSubtract))
-				strValue += "-";
+				strValue += " - ";
 		}
 	}
 	ImGui::End();
